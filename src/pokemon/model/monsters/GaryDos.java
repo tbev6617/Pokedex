@@ -4,9 +4,13 @@ import pokemon.model.types.*;
 
 public class GaryDos extends Magikarp implements PunType
 {
-	public GaryDos(int number)
+	public GaryDos()
 	{
-		super(number, "GaryDos");
+		super(-130, "GaryDos");
+	}
+	public GaryDos(String name)
+	{
+		super(-130, name);
 	}
 	public GaryDos(int number, String name)
 	{
@@ -19,5 +23,11 @@ public class GaryDos extends Magikarp implements PunType
 	public void wave()
 	{
 		System.out.println("You done been hit by a wave");
+	}
+	@Override
+	protected void setup()
+	{
+		super.setup();
+		this.setAtk(200);
 	}
 }

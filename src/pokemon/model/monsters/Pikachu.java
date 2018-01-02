@@ -4,13 +4,20 @@ import pokemon.model.types.*;
 
 public class Pikachu extends Pokemon implements ElectricType
 {
-	public Pikachu(int number)
+	public Pikachu()
 	{
-		super(number, "Pikachu");
+		super(25, "Pikachu");
+		setup();
 	}
-	public Pikachu(int number, String name)
+	public Pikachu(String name)
+	{
+		super(25, name);
+		setup();
+	}
+	public Pikachu(int number, String name) 
 	{
 		super(number, name);
+		setup();
 	}
 	public void zap()
 	{
@@ -23,5 +30,12 @@ public class Pikachu extends Pokemon implements ElectricType
 	public void thunderWave()
 	{
 		System.out.println("You done been hit by a thunder wave");
+	}
+	protected void setup()
+	{
+		this.setAtk(100);
+		this.setHp(1000);
+		this.setCanEvolve(true);
+		this.setEnhancementModifier(1);
 	}
 }

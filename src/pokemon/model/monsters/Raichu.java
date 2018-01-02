@@ -4,9 +4,13 @@ import pokemon.model.types.*;
 
 public class Raichu extends Pikachu implements PunType
 {
-	public Raichu(int number)
+	public Raichu()
 	{
-		super(number, "Raichu");
+		super(26, "Raichu");
+	}
+	public Raichu(String name)
+	{
+		super(26, name);
 	}
 	public Raichu(int number, String name)
 	{
@@ -14,6 +18,12 @@ public class Raichu extends Pikachu implements PunType
 	}
 	public void makeAPun()
 	{
-		System.out.println(getName() + " makes a pun. \"I hope this hertz\"");
+		System.out.println(getName() + " makes a pun. \"I'm ec-static\"");
+	}
+	@Override
+	protected void setup()
+	{
+		super.setup();
+		this.setAtk(200);
 	}
 }

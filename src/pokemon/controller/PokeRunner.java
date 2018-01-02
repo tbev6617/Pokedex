@@ -1,10 +1,10 @@
 package pokemon.controller;
 
-public class pokeRunner 
+public class PokeRunner 
 {
 	public static void main(String[] args) 
 	{
-		pokeController appController = new pokeController();
+		PokeController appController = new PokeController();
 		appController.start();
 	}
 }
