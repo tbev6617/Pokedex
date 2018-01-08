@@ -1,11 +1,17 @@
 package pokemon.view;
 
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import pokemon.controller.PokeController;
-import javax.swing.*;
 
 public class pokePanel 
 {
-	private pokeController appController;
+	private PokeController appController;
 	
 	private JLabel healthLabel;
 	private JLabel attackLabel;
@@ -37,7 +43,7 @@ public class pokePanel
 	private void updatePokedexInfo(int index)
 	{
 		nameField.setText(appController.getPokedex().get(index).getName());
-		evolvableBox.setSelected(appController.getPokedex().get(index).canEvolve());
+		evolvableBox.setSelected(appController.getPokedex().get(index).isEvolvable());
 		numberField.setText("#" + appController.getPokedex().get(index).getNumber());
 		attackField.setText(appController.getPokedex().get(index).getAtk() + "");
 		healthField.setText(appController.getPokedex().get(index).getHp() + "");

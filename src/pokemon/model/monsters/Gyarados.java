@@ -2,17 +2,17 @@ package pokemon.model.monsters;
 
 import pokemon.model.types.*;
 
-public class GaryDos extends Magikarp implements PunType
+public class Gyarados extends Magikarp implements PunType
 {
-	public GaryDos()
+	public Gyarados()
 	{
 		super(-130, "GaryDos");
 	}
-	public GaryDos(String name)
+	public Gyarados(String name)
 	{
 		super(-130, name);
 	}
-	public GaryDos(int number, String name)
+	public Gyarados(int number, String name)
 	{
 		super(number, name);
 	}

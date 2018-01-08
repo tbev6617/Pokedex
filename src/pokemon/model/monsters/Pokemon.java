@@ -3,7 +3,7 @@ package pokemon.model.monsters;
 public abstract class Pokemon 
 {
 	private String name;
-	private boolean canEvolve;
+	private boolean evolvable;
 	private int number;
 	private int hp;
 	private int atk;
@@ -44,9 +44,9 @@ public abstract class Pokemon
 		return name;
 	}
 
-	public boolean isCanEvolve() 
+	public boolean isEvolvable() 
 	{
-		return canEvolve;
+		return evolvable;
 	}
 
 	public int getNumber() 
@@ -76,7 +76,7 @@ public abstract class Pokemon
 
 	public void setCanEvolve(boolean canEvolve) 
 	{
-		this.canEvolve = canEvolve;
+		this.evolvable = canEvolve;
 	}
 
 	public void setHp(int hp) 

@@ -1,8 +1,9 @@
 package pokemon.controller;
 
-import java.util.List;
 import java.util.ArrayList;
-import pokemon.model.monsters.Pokemon;
+import java.util.List;
+import pokemon.model.monsters.*;
+
 
 public class PokeController 
 {
@@ -11,12 +12,24 @@ public class PokeController
 	public PokeController()
 	{
 		pokedex = new ArrayList<Pokemon>();
+		buildPokedex();
 	}
 	
 	public void start()
 	{
 		
 	}
+	
+	public void buildPokedex()
+	{
+		pokedex.add(new Magikarp("Garth"));
+		pokedex.add(new Gyarados("GaryDos"));
+		pokedex.add(new Pikachu());
+		pokedex.add(new Raichu());
+		pokedex.add(new Piplup("Joshie"));
+		pokedex.add(new CatJamal());
+	}
+	
 	public List<Pokemon> getPokedex()
 	{
 		return pokedex;
