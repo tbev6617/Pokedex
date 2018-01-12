@@ -64,6 +64,7 @@ public class PokePanel extends JPanel
 		
 		descriptionArea = new JTextArea(5, 10);
 		typeArea = new JTextArea(4, 15);
+		
 		firstType = new JPanel();
 		secondType = new JPanel();
 		
@@ -101,11 +102,15 @@ public class PokePanel extends JPanel
 	
 	public void setupLayout()
 	{
+		//TODO
 		appLayout.putConstraint(SpringLayout.NORTH, iconLabel, -50, SpringLayout.SOUTH, this);
 		appLayout.putConstraint(SpringLayout.WEST, iconLabel, 30, SpringLayout.WEST, this);
 		
 		appLayout.putConstraint(SpringLayout.NORTH, numberLabel, -125, SpringLayout.NORTH, iconLabel);
 		appLayout.putConstraint(SpringLayout.EAST, numberLabel, 200, SpringLayout.EAST, iconLabel);
+		
+		appLayout.putConstraint(SpringLayout.NORTH, numberField, -125, SpringLayout.NORTH, iconLabel);
+		appLayout.putConstraint(SpringLayout.WEST, numberField, 300, SpringLayout.EAST, numberLabel);
 		
 		appLayout.putConstraint(SpringLayout.NORTH, nameLabel, -100, SpringLayout.NORTH, iconLabel);
 		appLayout.putConstraint(SpringLayout.EAST, nameLabel, 200, SpringLayout.EAST, iconLabel);
@@ -159,12 +164,45 @@ public class PokePanel extends JPanel
 	}
 	private void updatePokedexInfo(int index)
 	{
+		//update basic fields
 		nameField.setText(appController.getPokedex().get(index).getName());
 		evolvableBox.setSelected(appController.getPokedex().get(index).isEvolvable());
 		numberField.setText("#" + appController.getPokedex().get(index).getNumber());
 		attackField.setText(appController.getPokedex().get(index).getAtk() + "");
 		healthField.setText(appController.getPokedex().get(index).getHp() + "");
 		modifierField.setText(appController.getPokedex().get(index).getEnhancementModifier() + "");
+		
+		//Update text areas
+		descriptionArea.setText(appController.getPokedex().get(index).toString());
+		typeArea.setText("");
+		
+		for (String current : appController.getPokedex().get(index).getPokemonTypes())
+		{
+			typeArea.append(current + "\n");
+		}
+	}
+	private void setupComboBox()
+	{
+		DefaultComboBoxModel pokemonModel = new DefaultComboBoxModel(appController.convertPokedex());
+		pokedexDropdown.setModel(pokemonModel);
+	}
+	private void updateImage()
+	{
+		String path = "/pokemon/view/images/";
+		String defaultName = "Pokeball";
+		String name = pokedexDropdown.getSelectedItem().toString();
+		String extension = ".png";
+		ImageIcon pokemonIcon;
+		
+		try
+		{
+			pokemonIcon = new ImageIcon(getClass().getResource(path + name + extension));
+		}
+		catch (NullPointerException missingImageFile)
+		{
+			pokemonIcon = new ImageIcon(getClass().getResource(path + defaultName + extension));
+		}
+		iconLabel.setIcon(pokemonIcon);
 	}
 	
 }

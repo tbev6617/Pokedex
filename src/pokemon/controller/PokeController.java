@@ -50,6 +50,8 @@ public class PokeController
 	{
 		return pokedex;
 	}
+	//TODO
+	//public void updateSelected(int selection, int health, int attack, boolean evolve, double modify)
 	
 	private boolean isValidInteger(String sample) 
 	{

@@ -24,6 +24,7 @@ public abstract class Pokemon
 		ArrayList<String> parentType = new ArrayList<String>();
 		Class<?> currentClass = this.getClass();
 		
+		//add the interfaces one by one
 		while(currentClass.getSuperclass() != null)
 		{
 			Class<?>[] pokeTypes = getClass().getInterfaces();
@@ -31,8 +32,11 @@ public abstract class Pokemon
 			
 			for(int i = 0; i < types.length; i++)
 			{
+				//get name
 				String currentInterface = pokeTypes[i].getCanonicalName();
+				//remove all the messy stuff
 				currentInterface = currentInterface.replace(this.getClass().getPackage().getName() + ".", "");
+				//add the name to my list if I don't have it
 				if(!parentType.contains(currentInterface))
 				{
 					parentType.add(currentInterface);
@@ -40,6 +44,7 @@ public abstract class Pokemon
 			}
 			currentClass = currentClass.getSuperclass();
 		}
+		
 		//convert list to a string
 		types = new String [parentType.size()];
 		
