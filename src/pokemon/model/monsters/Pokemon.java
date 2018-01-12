@@ -1,5 +1,8 @@
 package pokemon.model.monsters;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public abstract class Pokemon 
 {
 	private String name;
@@ -17,17 +20,35 @@ public abstract class Pokemon
 	
 	public final String[] getPokemonTypes()
 	{
-		Class<?> [] types = getClass().getInterfaces();
-		String [] pokeTypes = new String[types.length];
+		String[] types = null;
+		ArrayList<String> parentType = new ArrayList<String>();
+		Class<?> currentClass = this.getClass();
 		
-		for(int i = 0; i < types.length; i++)
+		while(currentClass.getSuperclass() != null)
 		{
-			String currentInterface = types[i].getCanonicalName();
-			currentInterface = currentInterface.replace(this.getClass().getPackage().getName() + ".", "");
-			pokeTypes[i] = currentInterface;
+			Class<?>[] pokeTypes = getClass().getInterfaces();
+			types = new String[pokeTypes.length];
+			
+			for(int i = 0; i < types.length; i++)
+			{
+				String currentInterface = pokeTypes[i].getCanonicalName();
+				currentInterface = currentInterface.replace(this.getClass().getPackage().getName() + ".", "");
+				if(!parentType.contains(currentInterface))
+				{
+					parentType.add(currentInterface);
+				}
+			}
+			currentClass = currentClass.getSuperclass();
+		}
+		//convert list to a string
+		types = new String [parentType.size()];
+		
+		for(int i = 0; i < parentType.size(); i++)
+		{
+			types[i] = parentType.get(i);
 		}
 		
-		return pokeTypes;
+		return types;
 	}
 	public String toString()
 	{
