@@ -50,10 +50,21 @@ public class PokeController
 	{
 		return pokedex;
 	}
-	//TODO
-	//public void updateSelected(int selection, int health, int attack, boolean evolve, double modify)
 	
-	private boolean isValidInteger(String sample) 
+	public void updateSelected(int selection, int health, int attack, boolean evolve, double modify, String name)
+	{
+		Pokemon selected = pokedex.get(selection);
+		
+		selected.setAtk(attack);
+		selected.setCanEvolve(evolve);
+		selected.setEnhancementModifier(modify);
+		selected.setName(name);
+		selected.setHp(health);
+		
+		FileController.savePokemonToFile((ArrayList<Pokemon>) pokedex);
+	}
+	
+	public boolean isValidInteger(String sample) 
 	{
 		boolean valid = false;
 		try
@@ -68,7 +79,7 @@ public class PokeController
 		return valid;
 	}
 	
-	private boolean isValidDouble(String sample) 
+	public boolean isValidDouble(String sample) 
 	{
 		boolean valid = false;
 		try {
